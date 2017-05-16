@@ -2506,6 +2506,18 @@ void FatalException(Isolate* isolate,
   Environment* env = Environment::GetCurrent(isolate);
   Local<Object> process_object = env->process_object();
   Local<String> fatal_exception_string = env->fatal_exception_string();
+  Local<Value> fatal_exception_string_val(fatal_exception_string);
+  volatile Local<String> fatal_exception_string1 = fatal_exception_string;
+  const char *f_str = *String::Utf8Value(fatal_exception_string_val);
+  printf("%s", f_str);
+  Local<Value> message_val(message->Get());
+  volatile Local<String> message1 = message;
+  const char *m_str = *String::Utf8Value(message_val);
+  printf("%s", m_str);
+  Local<Value> error_val(error->ToDetailString());
+  volatile Local<Value> error1 = error;
+  const char *e_str = *String::Utf8Value(error_val);
+  printf("%s", e_str);
   Local<Function> fatal_exception_function =
       process_object->Get(fatal_exception_string).As<Function>();
 
