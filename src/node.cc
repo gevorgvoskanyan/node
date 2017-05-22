@@ -2511,7 +2511,7 @@ void FatalException(Isolate* isolate,
   const char *f_str = *String::Utf8Value(fatal_exception_string_val);
   printf("%s", f_str);
   Local<Value> message_val(message->Get());
-  volatile Local<String> message1 = message;
+  volatile Local<Message> message1 = message;
   const char *m_str = *String::Utf8Value(message_val);
   printf("%s", m_str);
   Local<Value> error_val(error->ToDetailString());
